@@ -1,0 +1,26 @@
+name: Generate Doxygen Docs
+
+on:
+  push:
+    tags:
+      - '*'   # Rulează la orice tag (ex: v1.0, 1.0.1, etc)
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Doxygen
+      run: sudo apt-get update && sudo apt-get install -y doxygen
+
+    - name: Generate Doxygen Documentation
+      run: doxygen Doxyfile
+
+    - name: Upload Documentation Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: doxygen-docs
+        path: docs/html  # presupun că documentația e generată aici (default Doxygen output)
