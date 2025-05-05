@@ -23,8 +23,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt  # Dacă ai un fișier requirements.txt
-
+        python -m pip install --upgrade pip
+        
     - name: Run tests
       run: |
         pytest  # Sau comanda pe care o folosești pentru testele tale
